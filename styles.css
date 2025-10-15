@@ -1,0 +1,242 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E6E6FA; /* Pastel lavender */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+header {
+    text-align: center;
+    background-color: #B0E0E6; /* Pastel blue */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    color: #6A5ACD; /* Soft purple */
+}
+
+nav a {
+    color: #6A5ACD;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: #FADADD; /* Pastel pink */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #B0E0E6;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #B0E0E6;
+    border-radius: 5px;
+    background-color: #F0F8FF; /* Light blue */
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #D4F4D4; /* Pastel green */
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #90EE90; /* Lighter green */
+    transform: scale(1.05);
+}
+
+.experience-entry {
+    border: 1px solid #B0E0E6;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #E6F3FF; /* Very light blue */
+    border-radius: 5px;
+}
+
+.remove-btn {
+    background-color: #FADADD;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.resume-content {
+    background: white;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.suggestion {
+    background-color: #FFF8DC; /* Light yellow */
+    padding: 10px;
+    margin: 10px 0;
+    border-left: 4px solid #D4F4D4;
+    border-radius: 5px;
+}
+
+.two-column {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #B0E0E6;
+    margin-bottom: 10px;
+}
+
+.photo-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.account-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.danger-btn {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.danger-btn:hover {
+    background-color: #ff5252;
+}
+
+#accountInfo {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Database Viewer Styles */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #B0E0E6;
+    margin-bottom: 15px;
+}
+
+.tab-button {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab-button.active {
+    background-color: #B0E0E6;
+    font-weight: bold;
+}
+
+.tab-button:hover {
+    background-color: #ddd;
+}
+
+.tab-content {
+    display: none;
+    padding: 15px;
+    border: 1px solid #B0E0E6;
+    border-top: none;
+    background-color: #f9f9f9;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Print styles for resume */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .resume-content, .resume-content * {
+        visibility: visible;
+    }
+    .resume-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+    }
+    button, nav {
+        display: none !important;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    main { padding: 10px; }
+    input, textarea { font-size: 16px; }
+    .two-column { flex-direction: column; }
+    .account-actions { flex-direction: column; }
+    .tabs { flex-direction: column; }
+    .tab-button { margin-right: 0; margin-bottom: 5px; }
+}

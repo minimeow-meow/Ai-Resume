@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Builder - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AI Resume Builder</h1>
+        <p id="headerText">Enter your details for a professional, career-boosting resume.</p>
+        <nav id="navLinks">
+            <!-- Navigation will be populated by JavaScript -->
+        </nav>
+    </header>
+
+    <main>
+        <form id="resumeForm">
+            <div class="two-column">
+                <div class="column">
+                    <section class="photo-upload">
+                        <h2>Profile Photo</h2>
+                        <img id="profilePic" src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic">
+                        <input type="file" id="photoUpload" accept="image/*">
+                        <button type="button" id="uploadBtn">Upload Photo</button>
+                    </section>
+                    
+                    <section>
+                        <h2>Personal Info</h2>
+                        <input type="text" id="name" placeholder="Full Name" required>
+                        <input type="email" id="email" placeholder="Email" required>
+                        <input type="text" id="phone" placeholder="Phone Number">
+                        <input type="text" id="address" placeholder="Address">
+                        <input type="text" id="linkedin" placeholder="LinkedIn Profile">
+                    </section>
+                    
+                    <section>
+                        <h2>Personal Summary</h2>
+                        <textarea id="summary" placeholder="Brief professional summary about yourself" rows="4"></textarea>
+                    </section>
+                    
+                    <section>
+                        <h2>Skills</h2>
+                        <textarea id="skills" placeholder="List skills (e.g., JavaScript, Leadership, Data Analysis)" required></textarea>
+                    </section>
+                </div>
+                
+                <div class="column">
+                    <section>
+                        <h2>Education</h2>
+                        <input type="text" id="degree" placeholder="Degree (e.g., Bachelor's in Computer Science)">
+                        <input type="text" id="school" placeholder="School/University">
+                        <input type="text" id="gradYear" placeholder="Graduation Year">
+                        <textarea id="educationDetails" placeholder="Additional education details" rows="3"></textarea>
+                    </section>
+                    
+                    <section id="experienceSection">
+                        <h2>Experience</h2>
+                        <div id="experiences">
+                            <!-- Dynamic experiences added here -->
+                        </div>
+                        <button type="button" id="addExperience">+ Add Experience</button>
+                    </section>
+                    
+                    <section>
+                        <h2>Additional Information</h2>
+                        <textarea id="additionalInfo" placeholder="Certifications, awards, volunteer work, etc." rows="4"></textarea>
+                    </section>
+                </div>
+            </div>
+            
+            <button type="submit">Generate Resume & Suggestions</button>
+        </form>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

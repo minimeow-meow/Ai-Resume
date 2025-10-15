@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Builder - Preview</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AI Resume Builder</h1>
+        <p>Your professional resume, AI-generated for career success.</p>
+        <nav id="navLinks">
+            <!-- Navigation will be populated by JavaScript -->
+        </nav>
+    </header>
+
+    <main>
+        <div id="resumeContent" class="resume-content">
+            <!-- AI-generated content loads here via JS -->
+        </div>
+        <button onclick="window.print()">Print as PDF</button>
+        <a href="suggestions.html"><button>View AI Suggestions</button></a>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            if (!isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Load resume data
+            const data = getUserData();
+            const content = document.getElementById('resumeContent');
+            if (content) {
+                content.innerHTML = generateResume(data);
+            }
+            
+            // Setup navigation
+            setupNavigation();
+        });
+    </script>
+</body>
+</html>

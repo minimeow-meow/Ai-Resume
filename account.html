@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Builder - Account</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AI Resume Builder</h1>
+        <p>Manage your account</p>
+        <nav id="navLinks">
+            <!-- Navigation will be populated by JavaScript -->
+        </nav>
+    </header>
+
+    <main>
+        <h2>Account Management</h2>
+        <div id="accountInfo">
+            <!-- Account info will be populated by JavaScript -->
+        </div>
+        
+        <div class="account-actions">
+            <button onclick="exportData()">Export Data</button>
+            <button onclick="viewDatabase()">View Database</button>
+            <button class="danger-btn" onclick="deleteAccount()">Delete Account</button>
+        </div>
+        
+        <!-- Database Viewer -->
+        <div id="databaseViewer" style="display: none; margin-top: 30px;">
+            <h3>Database Contents</h3>
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab('userDataTab')">Your Resume Data</button>
+                <button class="tab-button" onclick="openTab('suggestionsTab')">AI Suggestions</button>
+                <button class="tab-button" onclick="openTab('allUsersTab')">All Users (Debug)</button>
+            </div>
+            
+            <div id="userDataTab" class="tab-content active">
+                <pre id="userDataContent"></pre>
+            </div>
+            
+            <div id="suggestionsTab" class="tab-content">
+                <pre id="suggestionsContent"></pre>
+            </div>
+            
+            <div id="allUsersTab" class="tab-content">
+                <pre id="allUsersContent"></pre>
+            </div>
+            
+            <button onclick="closeDatabaseViewer()" style="margin-top: 10px;">Close Database Viewer</button>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            if (!isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const user = getCurrentUser();
+            const accountInfo = document.getElementById('accountInfo');
+            if (accountInfo) {
+                accountInfo.innerHTML = `
+                    <p><strong>Username:</strong> ${user.username}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Member since:</strong> ${new Date(user.createdAt).toLocaleDateString()}</p>
+                `;
+            }
+            
+            // Setup navigation
+            setupNavigation();
+        });
+
+        function viewDatabase() {
+            const viewer = document.getElementById('databaseViewer');
+            const userDataContent = document.getElementById('userDataContent');
+            const suggestionsContent = document.getElementById('suggestionsContent');
+            const allUsersContent = document.getElementById('allUsersContent');
+            
+            if (viewer && userDataContent && suggestionsContent && allUsersContent) {
+                // Get current user data
+                const userData = getUserData();
+                userDataContent.textContent = JSON.stringify(userData, null, 2);
+                
+                // Get suggestions
+                const user = getCurrentUser();
+                const suggestions = JSON.parse(localStorage.getItem(`suggestions_${user.username}`) || '[]');
+                suggestionsContent.textContent = JSON.stringify(suggestions, null, 2);
+                
+                // Get all users (for debugging)
+                const allUsers = JSON.parse(localStorage.getItem('users') || '{}');
+                allUsersContent.textContent = JSON.stringify(allUsers, null, 2);
+                
+                viewer.style.display = 'block';
+            }
+        }
+
+        function closeDatabaseViewer() {
+            const viewer = document.getElementById('databaseViewer');
+            if (viewer) {
+                viewer.style.display = 'none';
+            }
+        }
+
+        function openTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Show the selected tab content and activate the button
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
